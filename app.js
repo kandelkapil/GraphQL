@@ -5,11 +5,12 @@ const mongoose = require("mongoose");
 
 var app = express();
 mongoose.connect(
-  "mongodb+srv://username:password@123@graphql.cydfd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  () => {
-    console.log("Connected To The Database");
-  }
+  "mongodb+srv://username:password%40123@graphql.cydfd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 );
+
+mongoose.connection.once("open", () => {
+  console.log("Connected To The Database");
+});
 
 app.use(
   "/graphql",
